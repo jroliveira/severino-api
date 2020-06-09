@@ -1,0 +1,185 @@
+version: '3'
+
+networks:
+  severino-net:
+    driver: bridge
+
+services:
+  grafana:
+    image: grafana/grafana:5.4.3
+    container_name: severino-grafana
+    restart: always
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./compose/monitor/grafana/grafana.env
+    volumes:
+      - ./compose/monitor/grafana/grafana.ini:/etc/grafana/grafana.ini
+      - ./compose/monitor/grafana/dashboards:/var/lib/grafana/dashboards
+      - ./compose/monitor/grafana/provisioning:/etc/grafana/provisioning
+    depends_on:
+      - prometheus
+    networks:
+      - severino-net
+
+  prometheus:
+    image: prom/prometheus:v2.7.2
+    container_name: severino-prometheus
+    restart: always
+    ports:
+      - "9090:9090"
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--log.level=warn"
+    volumes:
+      - ./compose/monitor/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - api
+      - kong
+    networks:
+      - severino-net
+
+  api:
+    container_name: severino-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    env_file:
+      - api.env
+    volumes:
+      - ./logs:/logs
+      - .:/src
+    networks:
+      - severino-net
+
+  mongo-express:
+    image: mongo-express:0.49.0
+    container_name: severino-mongo-express
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_BASICAUTH_USERNAME: mongo
+      ME_CONFIG_BASICAUTH_PASSWORD: 123456
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 123456
+    depends_on:
+      - mongo
+    networks:
+      - severino-net
+
+  mongo:
+    image: mongo:4.0.14
+    container_name: severino-mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+    ports:
+      - "27017:27017"
+    networks:
+      - severino-net
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.4.0
+    container_name: severino-kibana
+    ports:
+      - "5601:5601"
+    volumes:
+      - ./compose/monitor/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
+    depends_on:
+      - elasticsearch
+    networks:
+      - severino-net
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.4.0
+    container_name: severino-filebeat
+    volumes:
+      - ./compose/monitor/filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - ./logs:/var/log/severino
+    depends_on:
+      - logstash
+    networks:
+      - severino-net
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.4.0
+    container_name: severino-logstash
+    ports:
+      - "5044:5044"
+    volumes:
+      - ./compose/monitor/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./compose/monitor/logstash/pipeline:/usr/share/logstash/pipeline
+    depends_on:
+      - elasticsearch
+    networks:
+      - severino-net
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.4.0
+    container_name: severino-elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - ./compose/monitor/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./compose/monitor/elasticsearch/config/log4j2.properties:/usr/share/elasticsearch/config/log4j2.properties
+      - ./compose/monitor/elasticsearch/data:/usr/share/elasticsearch/data
+    networks:
+      - severino-net
+
+  jaegertracing:
+    image: jaegertracing/all-in-one:1.15.1
+    container_name: severino-jaegertracing
+    ports:
+      - "5775:5775/udp"
+      - "6831:6831/udp"
+      - "6832:6832/udp"
+      - "5778:5778"
+      - "16686:16686"
+      - "14268:14268"
+      - "9411:9411"
+    networks:
+      - severino-net
+
+  kong-gui:
+    image: pgbi/kong-dashboard:v3
+    container_name: severino-kong-gui
+    ports:
+      - "8090:8080"
+    command: 
+      - start
+      - --kong-url
+      - http://kong:8001
+    depends_on:
+      - kong
+    networks:
+      - severino-net
+
+  kong:
+    image: kong:1.4.2
+    container_name: severino-kong
+    restart: always
+    ports:
+      - "8001:8001"
+      - "8444:8444"
+      - "8000:8000"
+      - "8443:8443"
+      - "9080:9080"
+      - "9081:9081"
+    env_file:
+      - ./compose/api-gateway/kong.env
+    volumes:
+      - ./compose/api-gateway/declarative:/usr/local/kong/declarative
+      - ./compose/api-gateway/logs:/usr/local/kong/logs
+      - ./compose/api-gateway/logs/log.txt:/usr/local/kong/logs/log.txt
+      - ./compose/api-gateway/plugins:/kong/plugins
+    healthcheck:
+      test: ["CMD", "kong", "health"]
+      interval: 120s
+      timeout: 10s
+      retries: 3
+    networks:
+      - severino-net

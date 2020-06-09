@@ -1,0 +1,22 @@
+﻿{
+  "profiles": {
+    "Severino.WebApi": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": ".well-known/openid-configuration",
+      "applicationUrl": "http://localhost:5001",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Severino.WebApi (Production)": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": ".well-known/openid-configuration",
+      "applicationUrl": "http://localhost:5001",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      }
+    }
+  }
+}

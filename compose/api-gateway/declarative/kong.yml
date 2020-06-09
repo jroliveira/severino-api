@@ -1,0 +1,52 @@
+_format_version: "1.1"
+
+plugins:
+- name: file-log
+  enabled: true
+  service: severino-api
+  config: 
+    path: /usr/local/kong/logs/log.txt
+
+- name: header-echo
+  enabled: false
+    
+- name: ip-restriction
+  enabled: false
+  service: severino-api
+  config:
+    whitelist:
+    - 192.168.80.1
+
+- name: jwt-auth-token-validate
+  enabled: true
+  config:
+    issuer: http://localhost:35653
+    audience: severino-api
+
+- name: prometheus
+  enabled: true
+  protocols:
+  - grpc
+  - grpcs
+  - http
+  - https
+  run_on: first
+
+services:
+- name: severino-api
+  protocol: http
+  host: api
+  port: 5001
+  path: "/"
+  retries: 5
+  read_timeout: 60000
+  write_timeout: 60000
+  connect_timeout: 60000
+  routes:
+  - name: default-route
+    methods: 
+    - GET
+    paths:
+    - /
+    protocols:
+    - http

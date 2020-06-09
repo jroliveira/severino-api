@@ -1,0 +1,202 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Severino.WebApi", "src\Severino.WebApi\Severino.WebApi.csproj", "{1B0F9FAE-E22A-47CD-B434-11D0C1D871EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2F0E9F18-7B69-4C03-BCBE-A566C8CF83FA}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		.travis.yml = .travis.yml
+		after.Severino.sln.targets = after.Severino.sln.targets
+		api.env = api.env
+		app.json = app.json
+		appveyor.yml = appveyor.yml
+		build.cake = build.cake
+		build.ps1 = build.ps1
+		build.sh = build.sh
+		cake.config = cake.config
+		CHANGELOG.md = CHANGELOG.md
+		code-analysis.ruleset = code-analysis.ruleset
+		commitlint.config.js = commitlint.config.js
+		CONTRIBUTING.md = CONTRIBUTING.md
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		docker-compose.yml = docker-compose.yml
+		Dockerfile = Dockerfile
+		LICENSE.txt = LICENSE.txt
+		NuGet.config = NuGet.config
+		package-lock.json = package-lock.json
+		package.json = package.json
+		README.md = README.md
+		run.sh = run.sh
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Severino", "src\Severino\Severino.csproj", "{D584FA5F-5062-4237-8050-C0F6C8CD2A60}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3EE6F936-4762-426B-8762-C9F9E07D68A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{4FA10A9A-1EF0-48E8-B6F3-768AF3D84575}"
+	ProjectSection(SolutionItems) = preProject
+		tools\packages.config = tools\packages.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{CF13FCF4-0F8D-47CB-8B21-C7BAC57CF726}"
+	ProjectSection(SolutionItems) = preProject
+		.config\dotnet-tools.json = .config\dotnet-tools.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{06CA0755-9FBD-459D-8064-EF5FB8C24CC5}"
+	ProjectSection(SolutionItems) = preProject
+		build\build-solution.cake = build\build-solution.cake
+		build\data.cake = build\data.cake
+		build\delete-temp-directories.cake = build\delete-temp-directories.cake
+		build\helpers.cake = build\helpers.cake
+		build\publish-webapi.cake = build\publish-webapi.cake
+		build\restore-nuget-packages.cake = build\restore-nuget-packages.cake
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "compose", "compose", "{6F751F0C-8535-4722-B688-6FEA9BAF2791}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{438643C3-7ADC-492B-A9E3-BC494D79FA14}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{2E8D9BFE-D186-40FE-AAA8-AA4FFA79AC15}"
+	ProjectSection(SolutionItems) = preProject
+		.github\PULL_REQUEST_TEMPLATE.md = .github\PULL_REQUEST_TEMPLATE.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ISSUE_TEMPLATE", "ISSUE_TEMPLATE", "{B77584C0-7F23-44E7-8922-36F17038A427}"
+	ProjectSection(SolutionItems) = preProject
+		.github\ISSUE_TEMPLATE\1-bug-report.md = .github\ISSUE_TEMPLATE\1-bug-report.md
+		.github\ISSUE_TEMPLATE\2-feature-request.md = .github\ISSUE_TEMPLATE\2-feature-request.md
+		.github\ISSUE_TEMPLATE\3-help.md = .github\ISSUE_TEMPLATE\3-help.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api-gateway", "api-gateway", "{480A2DF1-3F17-405A-AE47-938C25E216B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{B5E92A1E-4FBE-4FC7-83A4-0DEBDB302BAB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "monitor", "monitor", "{4C33C916-8296-4044-8ADE-10AC0412D7CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "declarative", "declarative", "{FCDF120C-CD47-4ACF-AEFD-6FCBBF15AA73}"
+	ProjectSection(SolutionItems) = preProject
+		compose\api-gateway\declarative\kong.yml = compose\api-gateway\declarative\kong.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mongo", "mongo", "{10124DC5-7245-4979-99D0-20FFA0E75579}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "elasticsearch", "elasticsearch", "{6921A97C-8DEA-472E-A8CC-5A52B0FAA499}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "filebeat", "filebeat", "{F20E55F7-C1EB-4266-A55D-63B9D518CA11}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "grafana", "grafana", "{647CB8E5-C8E3-4EDD-AC1B-6D8D710E317E}"
+	ProjectSection(SolutionItems) = preProject
+		compose\monitor\grafana\grafana.env = compose\monitor\grafana\grafana.env
+		compose\monitor\grafana\grafana.ini = compose\monitor\grafana\grafana.ini
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kibana", "kibana", "{7AEA6F40-FCE1-4DCB-851C-6E054ED00F8E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "logstash", "logstash", "{1EB883BE-C587-451F-9458-B5730E1C6798}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "prometheus", "prometheus", "{114B3A3B-987F-427A-A109-9DE18008EACE}"
+	ProjectSection(SolutionItems) = preProject
+		compose\monitor\prometheus\prometheus.yml = compose\monitor\prometheus\prometheus.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{209FADD2-12B9-4C03-9293-DB947ABB8879}"
+	ProjectSection(SolutionItems) = preProject
+		compose\monitor\elasticsearch\config\elasticsearch.yml = compose\monitor\elasticsearch\config\elasticsearch.yml
+		compose\monitor\elasticsearch\config\log4j2.properties = compose\monitor\elasticsearch\config\log4j2.properties
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{C2C12731-8852-4B8E-B2A3-27BA7BB75894}"
+	ProjectSection(SolutionItems) = preProject
+		compose\monitor\filebeat\config\filebeat.yml = compose\monitor\filebeat\config\filebeat.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dashboards", "dashboards", "{2912BBA4-1239-4DAB-8DE7-A683D868C454}"
+	ProjectSection(SolutionItems) = preProject
+		compose\monitor\grafana\dashboards\app-metrics-web-monitoring-prometheus_rev3.json = compose\monitor\grafana\dashboards\app-metrics-web-monitoring-prometheus_rev3.json
+		compose\monitor\grafana\dashboards\kong-official_rev5.json = compose\monitor\grafana\dashboards\kong-official_rev5.json
+		compose\monitor\grafana\dashboards\kong-official_rev6.json = compose\monitor\grafana\dashboards\kong-official_rev6.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "provisioning", "provisioning", "{7722185E-CE44-4D5A-80DB-22DBCF0B35A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dashboards", "dashboards", "{F37D92C6-5B9E-4AEE-AE16-E919971B66EC}"
+	ProjectSection(SolutionItems) = preProject
+		compose\monitor\grafana\provisioning\dashboards\all.yml = compose\monitor\grafana\provisioning\dashboards\all.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "datasources", "datasources", "{CEF32FF8-87F9-48CB-BE2C-676E5E214A87}"
+	ProjectSection(SolutionItems) = preProject
+		compose\monitor\grafana\provisioning\datasources\all.yml = compose\monitor\grafana\provisioning\datasources\all.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{7A0BBBEC-12FF-4A22-912E-9F1E76EAC67C}"
+	ProjectSection(SolutionItems) = preProject
+		compose\monitor\kibana\config\kibana.yml = compose\monitor\kibana\config\kibana.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{971C72D4-FA8A-482C-9CA2-453323A7ED6B}"
+	ProjectSection(SolutionItems) = preProject
+		compose\monitor\logstash\config\logstash.yml = compose\monitor\logstash\config\logstash.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pipeline", "pipeline", "{63E3CD76-8C12-4272-BB27-61E55DA2D4F3}"
+	ProjectSection(SolutionItems) = preProject
+		compose\monitor\logstash\pipeline\logstash.conf = compose\monitor\logstash\pipeline\logstash.conf
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B0F9FAE-E22A-47CD-B434-11D0C1D871EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B0F9FAE-E22A-47CD-B434-11D0C1D871EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B0F9FAE-E22A-47CD-B434-11D0C1D871EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B0F9FAE-E22A-47CD-B434-11D0C1D871EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D584FA5F-5062-4237-8050-C0F6C8CD2A60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D584FA5F-5062-4237-8050-C0F6C8CD2A60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D584FA5F-5062-4237-8050-C0F6C8CD2A60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D584FA5F-5062-4237-8050-C0F6C8CD2A60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1B0F9FAE-E22A-47CD-B434-11D0C1D871EA} = {3EE6F936-4762-426B-8762-C9F9E07D68A6}
+		{D584FA5F-5062-4237-8050-C0F6C8CD2A60} = {3EE6F936-4762-426B-8762-C9F9E07D68A6}
+		{B77584C0-7F23-44E7-8922-36F17038A427} = {2E8D9BFE-D186-40FE-AAA8-AA4FFA79AC15}
+		{480A2DF1-3F17-405A-AE47-938C25E216B6} = {6F751F0C-8535-4722-B688-6FEA9BAF2791}
+		{B5E92A1E-4FBE-4FC7-83A4-0DEBDB302BAB} = {6F751F0C-8535-4722-B688-6FEA9BAF2791}
+		{4C33C916-8296-4044-8ADE-10AC0412D7CC} = {6F751F0C-8535-4722-B688-6FEA9BAF2791}
+		{FCDF120C-CD47-4ACF-AEFD-6FCBBF15AA73} = {480A2DF1-3F17-405A-AE47-938C25E216B6}
+		{10124DC5-7245-4979-99D0-20FFA0E75579} = {B5E92A1E-4FBE-4FC7-83A4-0DEBDB302BAB}
+		{6921A97C-8DEA-472E-A8CC-5A52B0FAA499} = {4C33C916-8296-4044-8ADE-10AC0412D7CC}
+		{F20E55F7-C1EB-4266-A55D-63B9D518CA11} = {4C33C916-8296-4044-8ADE-10AC0412D7CC}
+		{647CB8E5-C8E3-4EDD-AC1B-6D8D710E317E} = {4C33C916-8296-4044-8ADE-10AC0412D7CC}
+		{7AEA6F40-FCE1-4DCB-851C-6E054ED00F8E} = {4C33C916-8296-4044-8ADE-10AC0412D7CC}
+		{1EB883BE-C587-451F-9458-B5730E1C6798} = {4C33C916-8296-4044-8ADE-10AC0412D7CC}
+		{114B3A3B-987F-427A-A109-9DE18008EACE} = {4C33C916-8296-4044-8ADE-10AC0412D7CC}
+		{209FADD2-12B9-4C03-9293-DB947ABB8879} = {6921A97C-8DEA-472E-A8CC-5A52B0FAA499}
+		{C2C12731-8852-4B8E-B2A3-27BA7BB75894} = {F20E55F7-C1EB-4266-A55D-63B9D518CA11}
+		{2912BBA4-1239-4DAB-8DE7-A683D868C454} = {647CB8E5-C8E3-4EDD-AC1B-6D8D710E317E}
+		{7722185E-CE44-4D5A-80DB-22DBCF0B35A0} = {647CB8E5-C8E3-4EDD-AC1B-6D8D710E317E}
+		{F37D92C6-5B9E-4AEE-AE16-E919971B66EC} = {7722185E-CE44-4D5A-80DB-22DBCF0B35A0}
+		{CEF32FF8-87F9-48CB-BE2C-676E5E214A87} = {7722185E-CE44-4D5A-80DB-22DBCF0B35A0}
+		{7A0BBBEC-12FF-4A22-912E-9F1E76EAC67C} = {7AEA6F40-FCE1-4DCB-851C-6E054ED00F8E}
+		{971C72D4-FA8A-482C-9CA2-453323A7ED6B} = {1EB883BE-C587-451F-9458-B5730E1C6798}
+		{63E3CD76-8C12-4272-BB27-61E55DA2D4F3} = {1EB883BE-C587-451F-9458-B5730E1C6798}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {520EFA08-951B-4612-9CFD-1C706FCBD884}
+	EndGlobalSection
+EndGlobal
