@@ -14,6 +14,7 @@
             new ResourceConfiguration<HomeModel>((_, model) => new List<Link>
             {
                 new Link("/v1", "self", Get),
+                new Link("/v1/clients", "clients", Get),
             }),
         };
     }
