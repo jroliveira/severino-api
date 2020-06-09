@@ -29,6 +29,7 @@
             .ConfigureIpRateLimiting(this.Configuration)
             .ConfigureResilience(this.Configuration)
             .ConfigureMongo(this.Configuration)
+            .ConfigureDomain()
             .ConfigureApi()
             .ConfigureVersioning()
             .ConfigureMetric()
