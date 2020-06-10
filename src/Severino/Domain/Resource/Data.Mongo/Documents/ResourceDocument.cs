@@ -8,6 +8,10 @@
     using Severino.Domain.Claim.Data.Mongo.Documents;
     using Severino.Domain.Scope.Data.Mongo.Documents;
     using Severino.Infrastructure.Data.Mongo;
+    using Severino.Infrastructure.Monad;
+
+    using static Severino.Domain.Resource.ApiResource;
+    using static Severino.Infrastructure.Monad.Utils.Util;
 
     [BsonIgnoreExtraElements]
     internal sealed class ResourceDocument : IDocument
@@ -26,6 +30,17 @@
 
         public static implicit operator IdentityServer4.Models.ApiResource?(ResourceDocument document) => document?.ToApiResourceIdentityModel();
 
+        public static implicit operator ResourceDocument(ApiResource entity) => ParseDocument(entity);
+
+        public static ResourceDocument ParseDocument(ApiResource entity) => new ResourceDocument
+        {
+            Name = entity.Id,
+            DisplayName = entity.DisplayName,
+            Type = "ApiResource",
+            Claims = entity.Claims.Select(ClaimDocument.ParseDocument).ToList(),
+            Scopes = entity.Scopes.Select(ScopeDocument.ParseDocument).ToList(),
+        };
+
         public IdentityServer4.Models.ApiResource ToApiResourceIdentityModel() => new IdentityServer4.Models.ApiResource
         {
             Name = this.Name,
@@ -41,5 +56,11 @@
             Emphasize = this.Emphasize,
             UserClaims = this.Claims.Select(item => item.ToString()).ToList(),
         };
+
+        public Try<ApiResource> ToApiResourceEntity() => NewApiResource(
+            this.Name == null ? None() : Some(this.Name),
+            this.DisplayName == null ? None() : Some(this.DisplayName),
+            this.Scopes.Select(item => item.ToEntity().Get()).ToList(),
+            this.Claims.Select(item => item.ToEntity().Get()).ToList());
     }
 }

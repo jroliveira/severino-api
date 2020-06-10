@@ -15,6 +15,7 @@
             {
                 new Link("/v1", "self", Get),
                 new Link("/v1/clients", "clients", Get),
+                new Link("/v1/api-resources", "api-resources", Get),
             }),
         };
     }
