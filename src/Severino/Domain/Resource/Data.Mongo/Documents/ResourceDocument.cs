@@ -11,6 +11,7 @@
     using Severino.Infrastructure.Monad;
 
     using static Severino.Domain.Resource.ApiResource;
+    using static Severino.Domain.Resource.IdentityResource;
     using static Severino.Infrastructure.Monad.Utils.Util;
 
     [BsonIgnoreExtraElements]
@@ -32,6 +33,8 @@
 
         public static implicit operator ResourceDocument(ApiResource entity) => ParseDocument(entity);
 
+        public static implicit operator ResourceDocument(IdentityResource entity) => ParseDocument(entity);
+
         public static ResourceDocument ParseDocument(ApiResource entity) => new ResourceDocument
         {
             Name = entity.Id,
@@ -39,6 +42,15 @@
             Type = "ApiResource",
             Claims = entity.Claims.Select(ClaimDocument.ParseDocument).ToList(),
             Scopes = entity.Scopes.Select(ScopeDocument.ParseDocument).ToList(),
+        };
+
+        public static ResourceDocument ParseDocument(IdentityResource entity) => new ResourceDocument
+        {
+            Name = entity.Id,
+            DisplayName = entity.DisplayName,
+            Emphasize = entity.Emphasize,
+            Type = "IdentityResource",
+            Claims = entity.Claims.Select(ClaimDocument.ParseDocument).ToList(),
         };
 
         public IdentityServer4.Models.ApiResource ToApiResourceIdentityModel() => new IdentityServer4.Models.ApiResource
@@ -61,6 +73,12 @@
             this.Name == null ? None() : Some(this.Name),
             this.DisplayName == null ? None() : Some(this.DisplayName),
             this.Scopes.Select(item => item.ToEntity().Get()).ToList(),
+            this.Claims.Select(item => item.ToEntity().Get()).ToList());
+
+        public Try<IdentityResource> ToIdentityResourceEntity() => NewIdentityResource(
+            this.Name == null ? None() : Some(this.Name),
+            this.DisplayName == null ? None() : Some(this.DisplayName),
+            this.Emphasize,
             this.Claims.Select(item => item.ToEntity().Get()).ToList());
     }
 }

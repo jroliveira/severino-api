@@ -13,6 +13,9 @@
             .AddScoped<IDeleteResource, DeleteResource>()
             .AddScoped<IUpsertApiResource, UpsertApiResource>()
             .AddScoped<IGetApiResources, GetApiResources>()
-            .AddScoped<IGetApiResourceByName, GetApiResourceByName>();
+            .AddScoped<IGetApiResourceByName, GetApiResourceByName>()
+            .AddScoped<IUpsertIdentityResource, UpsertIdentityResource>()
+            .AddScoped<IGetIdentityResources, GetIdentityResources>()
+            .AddScoped<IGetIdentityResourceByName, GetIdentityResourceByName>();
     }
 }
