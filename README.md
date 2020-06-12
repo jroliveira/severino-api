@@ -2,6 +2,10 @@
 
 # Severino (api)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/cd7cd7fjrwqb7xwq/branch/master?svg=true)](https://ci.appveyor.com/project/jroliveira/severino-api/branch/master)
+[![Build Status](https://travis-ci.org/jroliveira/severino-api.svg?branch=master)](https://travis-ci.org/jroliveira/severino-api)
+[![CodeFactor](https://www.codefactor.io/repository/github/jroliveira/severino-api/badge)](https://www.codefactor.io/repository/github/jroliveira/severino-api)
+[![Maintainability](https://api.codeclimate.com/v1/badges/64e3a65e97181f9fc737/maintainability)](https://codeclimate.com/github/jroliveira/severino-api/maintainability)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](LICENSE.txt)
 
 Severino is a Security Token Service.
