@@ -3,6 +3,7 @@
     using System;
 
     using Severino.Infrastructure.Monad;
+    using Severino.Infrastructure.Monad.Extensions;
 
     using static Severino.Infrastructure.Monad.Utils.Util;
 
@@ -14,6 +15,10 @@
 
         public static Option<TReturn> Select<T, TReturn>(this in Option<T> @this, Func<T, Option<TReturn>> selector) => @this.Match(
             selector,
+            () => None());
+
+        public static Option<TReturn> Select<T, TReturn>(this in Option<T> @this, Func<T, Try<TReturn>> selector) => @this.Match(
+            some => selector(some).ToOption(),
             () => None());
 
         public static Func<Func<T, TReturn>, TReturn> Fold<T, TReturn>(this Option<T> @this, TReturn ifEmpty) => selector => @this.Match(
