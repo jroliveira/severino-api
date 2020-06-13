@@ -4,6 +4,7 @@
     using System.Runtime.Serialization;
 
     using Severino.Infrastructure.ErrorHandling.Exceptions;
+    using Severino.Infrastructure.Monad.Extensions;
 
     using static Severino.Infrastructure.Monad.Utils.Util;
 
@@ -28,6 +29,8 @@
         public static implicit operator Try<TSuccess>(BaseException failure) => Failure<TSuccess>(failure);
 
         public static implicit operator Try<TSuccess>(TSuccess success) => Success(success);
+
+        public static implicit operator Try<TSuccess>(Option<TSuccess> option) => option.ToTry();
 
         public static implicit operator bool(Try<TSuccess> @try) => @try.ToBoolean();
 
