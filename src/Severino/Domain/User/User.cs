@@ -36,5 +36,7 @@
                 && password
                     ? new User(email.Get(), password.Get())
                     : Failure<User>(new InvalidObjectException("Invalid user."));
+
+        public bool ValidatePassword(string password) => this.Password == password;
     }
 }
